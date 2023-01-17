@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|fire|outline|emboss|shadow-multiple|fire-animation">
+    <script src="https://kit.fontawesome.com/a4b935b8e6.js" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
+    <link rel="stylesheet" href="/CSS/Login.css">
+</head>
+
+<body>
+
+    <%- include('./partials/navbar.ejs') %>
+
+        <div class="center">
+            <div class="login_div ">
+                <h1>Login</h1>
+
+                <form onsubmit="return validate()" action="/login" method="post" id="login-form">
+                    <div class="txt-field">
+                        <input type="text" name="email" class="login-username" required>
+                        <span></span>
+                        <label>Username or email</label>
+                    </div>
+                    <div class="txt-field">
+                        <input type="password" name="password" class="login-password" required>
+                        <span></span>
+                        <label>Password</label>
+                    </div>
+                    <div class="error"></div>
+                    <div class="pass"><a href="/forgotPassword">Forgot Password?</a></div>
+                    <!-- <input type="submit" value="Login"> -->
+                    <button type="submit" class="btn">Login</button>
+                    <div class="signup_link">Not a member? <a href="/signup"> Signup</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+
+
+            function preventBack() {
+                window.history.forward();
+            }
+
+            setTimeout("preventBack()", 0);
+
+            window.onunload = function () { null };
+
+
+            function validate() {
+                const form = document.getElementById('login-form')
+                const email = form.email.value
+                const password = form.password.value
+
+                const Error = document.querySelector('.error')
+
+
+                if (email.length < 6) {
+                    Error.textContent = "Username or email should have a min length of 6"
+                    return false;
+                }
+                else if (password.length < 8) {
+                    Error.textContent = "Password should have a min length of 8"
+                    return false;
+                }
+                return true;
+            }
+
+            // const form = document.getElementById('login-form')
+            // form.addEventListener('submit',async (event)=>{
+            //     event.preventDefault()
+            //     return validate()
+            // })
+        </script>
+</body>
